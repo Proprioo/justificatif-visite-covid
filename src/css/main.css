@@ -91,6 +91,10 @@ a {
   text-decoration: underline;
 }
 
+a:hover {
+  color: rgb(0, 212, 156);
+}
+
 p {
   color: #222;
 }
