@@ -11,12 +11,7 @@ const createTitle = () => {
     className: 'titre-2',
     innerHTML: 'Saisissez les informations de la visite :',
   })
-  const p = createElement('p', {
-    className: 'msg-info',
-    innerHTML:
-      'Proprioo met à disposition des agents immobiliers un générateur de bons pour visite à destination des acheteurs conformément aux préconisations du gouvernement.<br /><br /><span class="danger-emoji">⚠️</span> <b>Aucune information n’est collectée ni conservée ni transférée à des tiers.</b>',
-  })
-  return [p, h2]
+  return [h2]
 }
 // createElement('div', { className: 'form-group' })
 
