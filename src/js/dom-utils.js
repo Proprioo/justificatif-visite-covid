@@ -33,7 +33,7 @@ export const appendTo = (el) => (domNodes) => {
   el.append(domNodes)
 }
 
-export function downloadBlob (blob, fileName) {
+export function downloadBlob(blob, fileName) {
   const link = createElement('a')
   const url = URL.createObjectURL(blob)
   link.href = url
