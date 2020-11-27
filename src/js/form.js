@@ -84,23 +84,39 @@ export function createForm() {
   }
 
   const appendToForm = appendTo(form)
-  const formFirstPart = formData
-    .flat(1)
-    .filter((field) => field.key !== 'reason')
-    .filter((field) => !field.isHidden)
-    .map((field, index) => {
-      if (field.type === 'title') {
-        return createTitleForm(field.key)
-      } else {
-        const formGroup = createFormGroup({
-          autofocus: index === 0,
-          ...field,
-          name: field.key,
+
+  const formReduced = formData
+    .reduce((acc, group) => {
+      const formFields = group
+        .filter((field) => field.key !== 'reason')
+        .filter((field) => !field.isHidden)
+        .map((field, index) => {
+          if (field.type === 'title') {
+            return createTitleForm(field.key)
+          } else {
+            const formGroup = createFormGroup({
+              autofocus: index === 1,
+              ...field,
+              name: field.key,
+            })
+
+            return formGroup
+          }
         })
 
-        return formGroup
-      }
+      acc.push(formFields)
+      return acc
+    }, [])
+    .map((part) => {
+      const [first, ...rest] = part
+      const line = createElement('section', {
+        className: 'row',
+      })
+      rest.forEach((item, index) => {
+        line.appendChild(item)
+      })
+      return [first, line]
     })
 
-  appendToForm([...formFirstPart])
+  appendToForm(formReduced.flat(1))
 }
