@@ -1,6 +1,10 @@
 [
   [
     {
+      "key": "Informations visiteur",
+      "type": "title"
+    },
+    {
       "key": "firstname",
       "type": "text",
       "contentType": "firstname",
@@ -15,6 +19,12 @@
       "label": "Nom  du visiteur",
       "autocomplete": "visitor-family-name",
       "placeholder": "Dupont"
+    }
+  ],
+  [
+    {
+      "key": "Informations agent",
+      "type": "title"
     },
     {
       "key": "firstnameAgent",
@@ -67,6 +77,10 @@
   ],
   [
     {
+      "key": "Informations visite",
+      "type": "title"
+    },
+    {
       "key": "address",
       "type": "text",
       "contentType": "address",
@@ -95,9 +109,7 @@
       "max": 99999,
       "minlength": 4,
       "maxlength": 5
-    }
-  ],
-  [
+    },
     {
       "key": "creationDate",
       "type": "date",

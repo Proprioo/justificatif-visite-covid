@@ -6,14 +6,12 @@ import formData from '../form-data.json'
 
 import { $, appendTo, createElement } from './dom-utils'
 
-const createTitle = () => {
-  const h2 = createElement('h2', {
-    className: 'titre-2',
-    innerHTML: 'Saisissez les informations de la visite :',
+const createTitleForm = (titleForm) => {
+  return createElement('h3', {
+    className: 'sous-titre',
+    innerHTML: titleForm,
   })
-  return [h2]
 }
-// createElement('div', { className: 'form-group' })
 
 const createFormGroup = ({
   autocomplete = false,
@@ -86,20 +84,23 @@ export function createForm() {
   }
 
   const appendToForm = appendTo(form)
-
   const formFirstPart = formData
     .flat(1)
     .filter((field) => field.key !== 'reason')
     .filter((field) => !field.isHidden)
     .map((field, index) => {
-      const formGroup = createFormGroup({
-        autofocus: index === 0,
-        ...field,
-        name: field.key,
-      })
+      if (field.type === 'title') {
+        return createTitleForm(field.key)
+      } else {
+        const formGroup = createFormGroup({
+          autofocus: index === 0,
+          ...field,
+          name: field.key,
+        })
 
-      return formGroup
+        return formGroup
+      }
     })
 
-  appendToForm([...createTitle(), ...formFirstPart])
+  appendToForm([...formFirstPart])
 }
